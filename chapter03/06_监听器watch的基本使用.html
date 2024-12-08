@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <div>
+            请输入问题 <input type="text" name="" v-model="question" id="">
+            <div>{{ answer }}</div>
+        </div>
+    </template>
+    <script src="./js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data: function () {
+                return {
+                    question: '',
+                    aswer: ''
+                }
+            },
+            watch: {
+                question: function (newQuestion, oldQuestion) {
+                    console.log('newQuestion', newQuestion);
+                    console.log('oldQuestion', oldQuestion);
+                    this.queryAnswer();
+                }
+            },
+            methods: {
+                queryAnswer () {
+                    this.answer = `你的问题是： ${this.question}? 答案是： 哈哈哈！`
+                }
+            }
+
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>
