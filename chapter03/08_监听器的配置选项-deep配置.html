@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <div>
+            <h2>{{ info.name }}</h2>
+            <h2>{{ info.book.name }}</h2>
+            <button @click="changeInfo">改变Info</button>
+            <button @click="changeInfoName">改变Info.name</button>
+            <button @click="changeInfoBookName">改变Info.book.name</button>
+        </div>
+    </template>
+    <script src="./js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data: function () {
+                return {
+                    info: {
+                        name: '张三',
+                        age: 18,
+                        book: {
+                            name: '《三体》'
+                        }
+                    }
+                }
+            },
+            watch: {
+                info: {
+                    handler(newInfo, oldInfo) {
+                        console.log("newValue",newInfo,"oldValue",oldInfo)
+                    },
+                    deep: true
+                }
+            },
+            methods: {
+                changeInfo() {
+                    this.info = {
+                        name: 'coderWay',
+                        age: 28,
+                        book: {
+                            name: '小波哥'
+                        }
+                    }
+                },
+                changeInfoName() {
+                    this.info.name = 'coderWay333'
+                },
+                changeInfoBookName() {
+                    this.info.book.name = '小波哥9999'
+                }
+            }
+
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>
